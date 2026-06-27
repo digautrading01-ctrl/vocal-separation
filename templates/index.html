@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Vocal Separator</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+        <span class="logo-text">AI Separator</span>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">&#8249;</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!-- HOT FEATURES -->
+      <div class="nav-group">
+        <div class="group-header" data-group="hot">
+          <span class="fire-icon">🔥</span>
+          <span class="group-label">Hot Features</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <ul class="group-items" id="group-hot">
+          <li class="nav-item active" data-feature="vocal-separation">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Vocal Separation</span>
+              <span class="item-sub">Extract vocals / accompaniment</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="noise-reduction">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+              <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">One-click Noise Reduction</span>
+              <span class="item-sub">Remove background noise</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="stem-separation">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Audio Track Separation</span>
+              <span class="item-sub">Professional multi-stem extraction</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="speaker-separation">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Speaker Separation</span>
+              <span class="item-sub">Separate overlapping voices</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="extract-audio">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Extract Audio</span>
+              <span class="item-sub">Extract audio from video</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="format-conversion">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+              <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Format Conversion</span>
+              <span class="item-sub">Convert MP3 / WAV / FLAC …</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- COMMON TOOLS -->
+      <div class="nav-group">
+        <div class="group-header" data-group="common">
+          <span class="group-label">Common Tools</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <ul class="group-items" id="group-common">
+          <li class="nav-item" data-feature="pitch-adjustment">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+              <polyline points="16 7 22 7 22 13"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Pitch Adjustment</span>
+              <span class="item-sub">Shift pitch up or down</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="audio-trim">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+              <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+              <line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Audio Trim</span>
+              <span class="item-sub">Clip your audio segment</span>
+            </div>
+          </li>
+          <li class="nav-item" data-feature="audio-merge">
+            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <polyline points="3 6 4 6 4 18 3 18"/>
+            </svg>
+            <div class="item-text">
+              <span class="item-title">Audio Merge</span>
+              <span class="item-sub">Combine multiple tracks</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <main class="main-content">
+
+    <!-- ─── VOCAL SEPARATION ─── -->
+    <section class="feature-page active" id="page-vocal-separation">
+      <div class="page-hero">
+        <h1>Vocal Separation</h1>
+        <p>Use powerful AI algorithms to cleanly extract vocals or accompaniment.</p>
+      </div>
+
+      <div class="upload-zone" id="vs-drop-zone" data-page="vocal-separation">
+        <div class="waveform-area" id="vs-waveform-area" style="display:none">
+          <div class="waveform-row">
+            <span class="waveform-label">Music</span>
+            <canvas class="waveform-canvas" id="vs-music-canvas"></canvas>
+            <span class="waveform-duration" id="vs-duration">0:00</span>
+          </div>
+          <div class="waveform-row">
+            <span class="waveform-label">Voice</span>
+            <canvas class="waveform-canvas" id="vs-voice-canvas"></canvas>
+          </div>
+        </div>
+        <div class="drop-placeholder" id="vs-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio / video here, or click to browse</p>
+          <span class="drop-hint">Supports MP3, WAV, FLAC, OGG, M4A, AAC, MP4, MKV…</span>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button class="btn btn-primary" id="vs-upload-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          Choose File
+        </button>
+        <button class="btn btn-process" id="vs-process-btn" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Start Separation
+        </button>
+        <input type="file" id="vs-file-input" accept="audio/*,video/*" style="display:none" />
+      </div>
+
+      <div class="model-section">
+        <div class="model-section-header">
+          <span class="model-section-title">Model Selection</span>
+          <span class="model-section-hint">Click to select; click again to deselect</span>
+        </div>
+        <div class="model-cards" id="vs-model-cards">
+          <div class="model-card selected" data-mode="vocals">
+            <div class="card-badge">Selected</div>
+            <h3>Vocal Extraction</h3>
+            <p>Fine-tuned Roformer — enhanced vocal clarity</p>
+            <ul class="card-features">
+              <li>Micro-tuned optimisation</li>
+              <li>Vocal enhancement</li>
+            </ul>
+            <div class="card-rating">
+              Rating: <span class="stars">★★★★</span>
+            </div>
+            <div class="card-tags"><span class="tag">#vocal</span><span class="tag">#fine-tune</span></div>
+          </div>
+          <div class="model-card" data-mode="choir">
+            <h3>Choir / Harmony Separation</h3>
+            <p>Separate male/female voices in choral recordings</p>
+            <ul class="card-features">
+              <li>SDR 24.1 (top performer)</li>
+              <li>Strong timbre separation</li>
+            </ul>
+            <div class="card-rating">Rating: <span class="stars">★★★★★</span></div>
+            <div class="card-tags"><span class="tag">#choir</span><span class="tag">#harmony</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-section" id="vs-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="vs-result-list"></div>
+      </div>
+
+      <div class="progress-overlay" id="vs-progress" style="display:none">
+        <div class="progress-card">
+          <div class="spinner"></div>
+          <p id="vs-progress-msg">Processing…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── NOISE REDUCTION ─── -->
+    <section class="feature-page" id="page-noise-reduction">
+      <div class="page-hero">
+        <h1>One-click Noise Reduction</h1>
+        <p>AI-powered spectral gating removes background hum, hiss, and ambient noise.</p>
+      </div>
+      <div class="upload-zone" id="nr-drop-zone" data-page="noise-reduction">
+        <div class="drop-placeholder" id="nr-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio here, or click to browse</p>
+        </div>
+        <div class="waveform-area" id="nr-waveform-area" style="display:none">
+          <div class="waveform-row">
+            <span class="waveform-label">Input</span>
+            <canvas class="waveform-canvas" id="nr-canvas"></canvas>
+            <span class="waveform-duration" id="nr-duration">0:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="nr-upload-btn">Choose File</button>
+        <label class="toggle-label">
+          <input type="checkbox" id="nr-stationary" checked />
+          <span>Stationary noise</span>
+        </label>
+        <button class="btn btn-process" id="nr-process-btn" disabled>Reduce Noise</button>
+        <input type="file" id="nr-file-input" accept="audio/*" style="display:none" />
+      </div>
+      <div class="results-section" id="nr-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="nr-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="nr-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Reducing noise…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── STEM SEPARATION ─── -->
+    <section class="feature-page" id="page-stem-separation">
+      <div class="page-hero">
+        <h1>Audio Track Separation</h1>
+        <p>Separate a song into vocals, drums, bass, and other instruments.</p>
+      </div>
+      <div class="upload-zone" id="st-drop-zone" data-page="stem-separation">
+        <div class="drop-placeholder" id="st-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio here, or click to browse</p>
+        </div>
+        <div class="waveform-area" id="st-waveform-area" style="display:none">
+          <div class="waveform-row">
+            <span class="waveform-label">Input</span>
+            <canvas class="waveform-canvas" id="st-canvas"></canvas>
+            <span class="waveform-duration" id="st-duration">0:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="st-upload-btn">Choose File</button>
+        <button class="btn btn-process" id="st-process-btn" disabled>Separate Stems</button>
+        <input type="file" id="st-file-input" accept="audio/*" style="display:none" />
+      </div>
+      <div class="results-section" id="st-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="st-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="st-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Separating stems…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── SPEAKER SEPARATION ─── -->
+    <section class="feature-page" id="page-speaker-separation">
+      <div class="page-hero">
+        <h1>Speaker Separation</h1>
+        <p>Unmix overlapping voices — ideal for interviews, dialogues, and conference calls.</p>
+      </div>
+      <div class="upload-zone" id="sp-drop-zone" data-page="speaker-separation">
+        <div class="drop-placeholder" id="sp-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio here, or click to browse</p>
+        </div>
+        <div class="waveform-area" id="sp-waveform-area" style="display:none">
+          <div class="waveform-row">
+            <span class="waveform-label">Input</span>
+            <canvas class="waveform-canvas" id="sp-canvas"></canvas>
+            <span class="waveform-duration" id="sp-duration">0:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="sp-upload-btn">Choose File</button>
+        <label class="select-label">
+          Speakers:
+          <select id="sp-num-speakers">
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </label>
+        <button class="btn btn-process" id="sp-process-btn" disabled>Separate Speakers</button>
+        <input type="file" id="sp-file-input" accept="audio/*" style="display:none" />
+      </div>
+      <div class="results-section" id="sp-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="sp-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="sp-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Separating speakers…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── EXTRACT AUDIO ─── -->
+    <section class="feature-page" id="page-extract-audio">
+      <div class="page-hero">
+        <h1>Extract Audio from Video</h1>
+        <p>Pull the audio track from any video file quickly and losslessly.</p>
+      </div>
+      <div class="upload-zone" id="ea-drop-zone" data-page="extract-audio">
+        <div class="drop-placeholder" id="ea-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop a video file here, or click to browse</p>
+          <span class="drop-hint">MP4, MKV, AVI, MOV, WMV, WebM…</span>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="ea-upload-btn">Choose Video</button>
+        <label class="select-label">
+          Output format:
+          <select id="ea-format">
+            <option value="wav">WAV</option>
+            <option value="mp3">MP3</option>
+            <option value="flac">FLAC</option>
+          </select>
+        </label>
+        <button class="btn btn-process" id="ea-process-btn" disabled>Extract Audio</button>
+        <input type="file" id="ea-file-input" accept="video/*" style="display:none" />
+      </div>
+      <div class="results-section" id="ea-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="ea-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="ea-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Extracting audio…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── FORMAT CONVERSION ─── -->
+    <section class="feature-page" id="page-format-conversion">
+      <div class="page-hero">
+        <h1>Format Conversion</h1>
+        <p>Convert between MP3, WAV, FLAC, OGG, M4A, AAC, and more.</p>
+      </div>
+      <div class="upload-zone" id="fc-drop-zone" data-page="format-conversion">
+        <div class="drop-placeholder" id="fc-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio here, or click to browse</p>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="fc-upload-btn">Choose File</button>
+        <label class="select-label">
+          Target format:
+          <select id="fc-format">
+            <option value="mp3">MP3</option>
+            <option value="wav">WAV</option>
+            <option value="flac">FLAC</option>
+            <option value="ogg">OGG</option>
+            <option value="aac">AAC</option>
+          </select>
+        </label>
+        <label class="select-label">
+          Bitrate:
+          <select id="fc-bitrate">
+            <option value="128k">128 kbps</option>
+            <option value="192k" selected>192 kbps</option>
+            <option value="256k">256 kbps</option>
+            <option value="320k">320 kbps</option>
+          </select>
+        </label>
+        <button class="btn btn-process" id="fc-process-btn" disabled>Convert</button>
+        <input type="file" id="fc-file-input" accept="audio/*" style="display:none" />
+      </div>
+      <div class="results-section" id="fc-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="fc-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="fc-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Converting…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── PITCH ADJUSTMENT ─── -->
+    <section class="feature-page" id="page-pitch-adjustment">
+      <div class="page-hero">
+        <h1>Pitch Adjustment</h1>
+        <p>Shift the pitch of any audio up or down by semitones without changing tempo.</p>
+      </div>
+      <div class="upload-zone" id="pa-drop-zone" data-page="pitch-adjustment">
+        <div class="drop-placeholder" id="pa-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio here, or click to browse</p>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="pa-upload-btn">Choose File</button>
+        <div class="slider-group">
+          <label for="pa-semitones">Semitones: <strong id="pa-semitones-val">0</strong></label>
+          <input type="range" id="pa-semitones" min="-12" max="12" value="0" step="0.5" />
+        </div>
+        <button class="btn btn-process" id="pa-process-btn" disabled>Shift Pitch</button>
+        <input type="file" id="pa-file-input" accept="audio/*" style="display:none" />
+      </div>
+      <div class="results-section" id="pa-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="pa-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="pa-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Shifting pitch…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── AUDIO TRIM ─── -->
+    <section class="feature-page" id="page-audio-trim">
+      <div class="page-hero">
+        <h1>Audio Trim</h1>
+        <p>Clip out the exact segment you need from any audio file.</p>
+      </div>
+      <div class="upload-zone" id="at-drop-zone" data-page="audio-trim">
+        <div class="drop-placeholder" id="at-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <p>Drag &amp; drop audio here, or click to browse</p>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="at-upload-btn">Choose File</button>
+        <label class="input-label">Start (s): <input type="number" id="at-start" value="0" min="0" step="0.1" /></label>
+        <label class="input-label">End (s): <input type="number" id="at-end" placeholder="End" min="0" step="0.1" /></label>
+        <button class="btn btn-process" id="at-process-btn" disabled>Trim</button>
+        <input type="file" id="at-file-input" accept="audio/*" style="display:none" />
+      </div>
+      <div class="results-section" id="at-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="at-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="at-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Trimming…</p></div>
+      </div>
+    </section>
+
+    <!-- ─── AUDIO MERGE ─── -->
+    <section class="feature-page" id="page-audio-merge">
+      <div class="page-hero">
+        <h1>Audio Merge</h1>
+        <p>Join multiple audio segments into a single seamless track.</p>
+      </div>
+      <div class="merge-file-list" id="am-file-list">
+        <p class="merge-hint">Add 2 or more audio files to merge</p>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="am-add-btn">Add File</button>
+        <label class="toggle-label">
+          Crossfade (ms):
+          <input type="number" id="am-crossfade" value="0" min="0" max="5000" step="100" style="width:80px" />
+        </label>
+        <button class="btn btn-process" id="am-process-btn" disabled>Merge</button>
+        <input type="file" id="am-file-input" accept="audio/*" multiple style="display:none" />
+      </div>
+      <div class="results-section" id="am-results" style="display:none">
+        <h3 class="results-title">Results</h3>
+        <div class="result-list" id="am-result-list"></div>
+      </div>
+      <div class="progress-overlay" id="am-progress" style="display:none">
+        <div class="progress-card"><div class="spinner"></div><p>Merging…</p></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Toast notifications -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
