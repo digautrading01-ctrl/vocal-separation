@@ -1,0 +1,24 @@
+# Web framework
+flask>=3.0.0
+werkzeug>=3.0.0
+
+# Audio I/O
+soundfile>=0.12.1
+pydub>=0.25.1
+
+# Vocal / stem separation (Demucs)
+demucs>=4.0.0
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Noise reduction (algorithmic, no model download needed)
+noisereduce>=3.0.0
+
+# Speaker separation (SpeechBrain SepFormer)
+speechbrain>=1.0.0
+
+# Pitch shifting
+librosa>=0.10.0
+
+# NumPy (common dependency)
+numpy>=1.24.0
